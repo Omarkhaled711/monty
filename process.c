@@ -38,15 +38,17 @@ char *get_first_string(char *input)
  * get_first_integer - Get the first integer object
  *
  * @input: the input
+ * @flag: if there's no int argument flag will be 0
  * Return: int
  */
-int get_first_integer(char *input)
+int get_first_integer(char *input, int *flag)
 {
 	int first_integer = 0;
 	size_t len = strlen(input);
 	size_t i = 0;
 	int sign = 1;
 
+	*flag = 0;
 	/* Skip any leading spaces */
 	while (i < len && !isdigit(input[i]) && input[i] != '-')
 		i++;
@@ -62,6 +64,11 @@ int get_first_integer(char *input)
 	{
 		first_integer = first_integer * 10 + (input[i] - '0');
 		i++;
+		*flag = 1;
+	}
+	if (input[i] && !isspace(input[i]))
+	{
+		*flag = 0;
 	}
 	return (first_integer * sign);
 }
@@ -77,7 +84,8 @@ int get_first_integer(char *input)
 void process_line(char *input, stack_t **stack, unsigned int line_num)
 {
 	char *cmd = get_first_string(input);
+	int flag = 0;
 
-	data = get_first_integer(input);
-	execute(cmd, stack, line_num);
+	data = get_first_integer(input, &flag);
+	execute(cmd, stack, line_num, flag);
 }
