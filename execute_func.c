@@ -24,7 +24,7 @@ int execute(char *cmd, stack_t **stack, unsigned int line_number, int flag)
 		{
 			if (i == 0 && flag == 0)
 			{
-				fprintf(stderr,  "L%d: usage: push integer\n", line_number);
+				fprintf(stderr,  "L%d: usage: push integer\n", line_number + 1);
 				return (-1);
 			}
 			instructions[i].f(stack, line_number);
@@ -34,7 +34,7 @@ int execute(char *cmd, stack_t **stack, unsigned int line_number, int flag)
 	}
 	if (cmd_err)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, cmd);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number + 1, cmd);
 		return (-1);
 	}
 	return (1);
