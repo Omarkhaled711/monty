@@ -1,7 +1,6 @@
-	push -1024
-push 2a
-pall	
-push	3
-push 5
-push 32 oh
-	pall
+push 1
+pint
+push 2
+pint
+push 3
+pint

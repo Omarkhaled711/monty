@@ -42,3 +42,24 @@ void pall(stack_t **stack, unsigned int line_num)
 		current = current->next;
 	}
 }
+
+/**
+ * pint - prints the last element in the stack
+ *
+ * @stack: stack
+ * @line_num: the line number
+ */
+void pint(stack_t **stack, unsigned int line_num)
+{
+	(void) line_num;
+	if (*stack != NULL)
+	{
+		printf("%d\n", (*stack)->n);
+	}
+	else
+	{
+		fprintf(stderr,  "L%d: can't pint, stack empty\n", line_num + 1);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
+	}
+}
