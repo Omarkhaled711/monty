@@ -13,7 +13,9 @@ int execute(char *cmd, stack_t **stack, unsigned int line_number, int flag)
 {
 	instruction_t instructions[] = {
 		{"push", push}, {"pall", pall}, {"pint", pint},
-		{"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}, {NULL, NULL}
+		{"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop},
+		{"sub", sub}, {"mul", mul}, {"div", divide}, {"mod", mod},
+		{NULL, NULL}
 	};
 	int cmd_err = 1, i;
 

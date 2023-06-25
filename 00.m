@@ -1,8 +1,7 @@
 push 1
 push 2
-push 3
+push 21
+push 7
+# A comment line
+mod
 pall
-add
-pall
-nop
-nop

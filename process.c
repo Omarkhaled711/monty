@@ -84,7 +84,7 @@ int process_line(char *input, stack_t **stack, unsigned int line_num)
 	int flag = 0, to_return;
 
 	get_first_string(input, &cmd);
-	if (!cmd[0] || cmd[0] == '\n')
+	if (!cmd[0] || cmd[0] == '\n' || cmd[0] == '#')
 	{
 		free(cmd);
 		return (1);
