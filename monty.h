@@ -39,12 +39,13 @@ typedef struct instruction_s
 
 extern int data;
 
-void execute(char *cmd, stack_t **stack, unsigned int line_number, int flag);
-void process_line(char *input, stack_t **stack, unsigned int line_num);
+int execute(char *cmd, stack_t **stack, unsigned int line_number, int flag);
+int process_line(char *input, stack_t **stack, unsigned int line_num);
 
 /*stack func*/
 
 void push(stack_t **stack, unsigned int line_num);
 void pall(stack_t **stack, unsigned int line_num);
+void free_stack(stack_t *head);
 
 #endif

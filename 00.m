@@ -1,5 +1,5 @@
 	push 1
-push 2	
+pushe 2	
 pall	
 push	3
 push 5

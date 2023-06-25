@@ -49,7 +49,13 @@ int main(int argc, char *argv[])
 	}
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
-		process_line(line, &stack, line_num);
+		if ((process_line(line, &stack, line_num) == -1))
+		{
+			free_stack(stack);
+			free(line);
+			fclose(fp);
+			exit(EXIT_FAILURE);
+		}
 		line_num++;
 	}
 	free_stack(stack);

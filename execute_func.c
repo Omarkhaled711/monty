@@ -7,9 +7,9 @@
  * @stack: the stack
  * @line_number: the line_number
  * @flag: 0 if no int data, 1 otherwise
- * Return: void
+ * Return: 1 or -1
  */
-void execute(char *cmd, stack_t **stack, unsigned int line_number, int flag)
+int execute(char *cmd, stack_t **stack, unsigned int line_number, int flag)
 {
 	instruction_t instructions[] = {
 		{"push", push},
@@ -25,7 +25,7 @@ void execute(char *cmd, stack_t **stack, unsigned int line_number, int flag)
 			if (i == 0 && flag == 0)
 			{
 				fprintf(stderr,  "L%d: usage: push integer\n", line_number);
-				exit(EXIT_FAILURE);
+				return (-1);
 			}
 			instructions[i].f(stack, line_number);
 			cmd_err = 0;
@@ -35,6 +35,7 @@ void execute(char *cmd, stack_t **stack, unsigned int line_number, int flag)
 	if (cmd_err)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, cmd);
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
+	return (1);
 }

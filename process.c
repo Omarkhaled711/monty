@@ -77,15 +77,16 @@ int get_first_integer(char *input, int *flag)
  * @input: the input
  * @stack: the stack
  * @line_num: the line number
- * Return: void
+ * Return: execute func;
  */
-void process_line(char *input, stack_t **stack, unsigned int line_num)
+int process_line(char *input, stack_t **stack, unsigned int line_num)
 {
 	char *cmd = NULL;
-	int flag = 0;
+	int flag = 0, to_return;
 
 	get_first_string(input, &cmd);
 	data = get_first_integer(input, &flag);
-	execute(cmd, stack, line_num, flag);
+	to_return = execute(cmd, stack, line_num, flag);
 	free(cmd);
+	return (to_return);
 }
