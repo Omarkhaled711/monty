@@ -84,6 +84,11 @@ int process_line(char *input, stack_t **stack, unsigned int line_num)
 	int flag = 0, to_return;
 
 	get_first_string(input, &cmd);
+	if (!cmd[0] || cmd[0] == '\n')
+	{
+		free(cmd);
+		return (1);
+	}
 	data = get_first_integer(input, &flag);
 	to_return = execute(cmd, stack, line_num, flag);
 	free(cmd);
