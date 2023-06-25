@@ -12,7 +12,7 @@ void get_first_string(char *input, char **first_string)
 	size_t len = strlen(input);
 	size_t i = 0, j = 0;
 
-	*first_string = malloc(len * sizeof(char));
+	*first_string = malloc((len + 1) * sizeof(char));
 	if (*first_string == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");

@@ -63,3 +63,26 @@ void pint(stack_t **stack, unsigned int line_num)
 		exit(EXIT_FAILURE);
 	}
 }
+/**
+ * pop - pops element from stack
+ *
+ * @stack: stack
+ * @line_num: the line number
+ * Return: void
+ */
+void pop(stack_t **stack, unsigned int line_num)
+{
+	stack_t *new_item = *stack;
+
+	(void) line_num;
+	if (new_item == NULL)
+	{
+		fprintf(stderr,  "L%d: can't pop an stack empty\n", line_num + 1);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
+	}
+	*stack = new_item->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
+	free(new_item);
+}
