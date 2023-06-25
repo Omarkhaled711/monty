@@ -10,7 +10,14 @@ char *get_first_string(char *input)
 {
 	char *first_string = NULL;
 	size_t len = strlen(input);
-	size_t i = 0;
+	size_t i = 0, j = 0;
+
+	first_string = malloc(32);
+	if (first_string == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
 	/* Skip any leading spaces */
 	while (i < len && isspace(input[i]))
@@ -18,19 +25,10 @@ char *get_first_string(char *input)
 
 	/* Find the start of the first string */
 	while (i < len && !isspace(input[i]))
-		i++;
-
-	/* Copy the first string into a new buffer */
-	if (i > 0)
 	{
-		first_string = malloc(i + 1);
-		if (first_string == NULL)
-		{
-			fprintf(stderr, "Error: malloc failed\n");
-			exit(EXIT_FAILURE);
-		}
-		strncpy(first_string, input, i);
-		first_string[i] = '\0';
+		first_string[j] = input[i];
+		i++;
+		j++;
 	}
 	return (first_string);
 }
