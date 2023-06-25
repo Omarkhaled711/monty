@@ -58,10 +58,10 @@ int get_first_integer(char *input, int *flag)
 	}
 
 	/* Find the start of the integer */
-	while (i < len && isdigit(input[i]))
+	if (i < len && isdigit(input[i]))
 	{
-		first_integer = first_integer * 10 + (input[i] - '0');
-		i++;
+		first_integer = atoi(&input[i]);
+		i += strlen(&input[i]);
 		*flag = 1;
 	}
 	if (input[i] && !isspace(input[i]))
