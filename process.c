@@ -4,16 +4,16 @@
  * get_first_string - Get the first string object
  *
  * @input: the input
- * Return: char*
+ * @first_string: pointer to the string
+ * Return: void
  */
-char *get_first_string(char *input)
+void get_first_string(char *input, char **first_string)
 {
-	char *first_string = NULL;
 	size_t len = strlen(input);
 	size_t i = 0, j = 0;
 
-	first_string = malloc(32);
-	if (first_string == NULL)
+	*first_string = malloc(len * sizeof(char));
+	if (*first_string == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
@@ -26,11 +26,11 @@ char *get_first_string(char *input)
 	/* Find the start of the first string */
 	while (i < len && !isspace(input[i]))
 	{
-		first_string[j] = input[i];
+		(*first_string)[j] = input[i];
 		i++;
 		j++;
 	}
-	return (first_string);
+	(*first_string)[j] = 0;
 }
 /**
  * get_first_integer - Get the first integer object
@@ -81,9 +81,11 @@ int get_first_integer(char *input, int *flag)
  */
 void process_line(char *input, stack_t **stack, unsigned int line_num)
 {
-	char *cmd = get_first_string(input);
+	char *cmd = NULL;
 	int flag = 0;
 
+	get_first_string(input, &cmd);
 	data = get_first_integer(input, &flag);
 	execute(cmd, stack, line_num, flag);
+	free(cmd);
 }

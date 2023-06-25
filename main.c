@@ -4,6 +4,23 @@
 int data;
 
 /**
+ * free_stack - frees stack
+ *
+ * @head: the head of the doubly linked list
+ * Return: void
+ */
+void free_stack(stack_t *head)
+{
+	stack_t *current = head, *temp;
+
+	while (current != NULL)
+	{
+		temp = current;
+		current = current->next;
+		free(temp);
+	}
+}
+/**
  * main - entry point
  *
  * @argc: number of command line args
@@ -35,5 +52,8 @@ int main(int argc, char *argv[])
 		process_line(line, &stack, line_num);
 		line_num++;
 	}
+	free_stack(stack);
+	free(line);
+	fclose(fp);
 	return (0);
 }
