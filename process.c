@@ -34,11 +34,10 @@ void get_first_string(char *input, char **first_string)
 }
 /**
  * get_first_integer - Get the first integer object
- *
  * @input: the input
  * @flag: if there's no int argument flag will be 0
  * Return: int
- */
+*/
 int get_first_integer(char *input, int *flag)
 {
 	int first_integer = 0;
@@ -50,18 +49,18 @@ int get_first_integer(char *input, int *flag)
 	/* Skip any leading spaces */
 	while (i < len && !isdigit(input[i]) && input[i] != '-')
 		i++;
+
 	/* Check for sign */
 	if (i < len && input[i] == '-')
 	{
 		sign = -1;
 		i++;
 	}
-
 	/* Find the start of the integer */
-	if (i < len && isdigit(input[i]))
+	while (i < len && isdigit(input[i]))
 	{
-		first_integer = atoi(&input[i]);
-		i += strlen(&input[i]);
+		first_integer = first_integer * 10 + (input[i] - '0');
+		i++;
 		*flag = 1;
 	}
 	if (input[i] && !isspace(input[i]))
